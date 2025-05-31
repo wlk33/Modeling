@@ -1,0 +1,45 @@
+
+# Tax homework
+# Given the “gross” salary of a person, calculate the “net”.
+# Constraints
+    #If the gross is less than 1000, then the income tax is 10%
+    #If the gross is less than 2000, then the income tax is 12%
+    #If the gross is less than 4000, then the income tax is 14%
+    #If the gross is more than 4000, then the income tax is 18%
+    #If the gross is less than 2000, every child gets you a tax cut of 1%
+    #If the gross is more than 2000, every child gets you a tax cut of 0.5%
+
+# Instructions
+# Read the “gross” and the number of children
+# Print the “net”
+# Use try/except when reading the inputs
+
+
+name = input("what is your name? ")
+gross = input(f"What is your gross salary, {name}? ")
+children = input(f"One last question, how many children do you have {name}? ")
+
+try:
+    gross = int(gross) #Here there can be a problem
+    children = int(children)
+    if gross < 0:
+        raise ValueError #here I asked chatGPT how to identify negative inputs as errors
+    elif children < 0:
+        raise ValueError #here I asked chatGPT how to identify negative inputs as errors
+    elif gross < 1000:
+        print(f"Your income tax is 10%; therefore your net salary is {gross * (0.9 + children * 0.01)} ")
+        print(f"As you have {children} child(ren), and a gross salary under 2000, you have a tax cut off of {children * 1}%")
+    elif gross < 2000:
+        print(f"Your income tax is 12%; therefore your net salary is {gross * (0.88 + children * 0.01)}")
+        print(f"As you have {children} child(ren), and a gross salary under 2000, you have a tax cut off of {children * 1}%")
+    elif gross < 4000:
+        print(f"Your income tax is 14%; therefore your net salary is {gross * (0.86 + children * 0.005)}")
+        print(f"As you have {children} child(ren), and gross salary over 2000, you have a tax cut off of {children * 0.5}%")
+    else: # Gross salary larger than 4000
+        print(f"You are in the top tax bracket, meaning your income tax is 18%; therefore your net salary is {gross * (0.82 + children * 0.005)}")
+        print(f"As you have {children} child(ren), and gross salary over 2000, you have a tax cut off of {children * 0.5}%")
+
+except ValueError:
+    print("Please enter a valid value for your gross salary or number of children. Make sure you write these as digits and not in words")
+except:
+    print("Make sure you are typing your gross salary as digits!")
